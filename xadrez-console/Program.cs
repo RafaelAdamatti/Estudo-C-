@@ -13,7 +13,11 @@ namespace xadrez_console
 
                 Tabuleiro tab = new Tabuleiro(8, 8);
 
-                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(9, 3));
+                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(2, 3));
+                tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(4, 3));
+                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(3, 4));
+                tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(5, 7));
+
 
                 Tela.imprimirTabuleiro(tab);
             }
