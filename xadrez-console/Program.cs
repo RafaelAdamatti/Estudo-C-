@@ -13,7 +13,22 @@ namespace xadrez_console
 
                 PartidaDeXadrez partida = new PartidaDeXadrez();
 
-                Tela.imprimirTabuleiro(partida.tab);
+                while (!partida.terminada)
+                {
+                    Console.WriteLine();
+
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partida.tab);
+
+                    Console.Write("Origem: ");
+                    Posicao origem = Tela.lerPosiçãoXadrez().toPosicao();
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.lerPosiçãoXadrez().toPosicao();
+
+                    partida.executaMovimento(origem, destino);
+
+                }
+
             }
 
             catch (TabuleiroException e)
