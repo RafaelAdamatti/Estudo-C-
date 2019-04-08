@@ -36,6 +36,11 @@
             return false;
         }
 
+        public bool podeMoverPeca (Posicao pos)
+        {
+            return movimentosPossiveis()[pos.linha, pos.coluna];
+        }
+
         public abstract bool[,] movimentosPossiveis();
     }
 }

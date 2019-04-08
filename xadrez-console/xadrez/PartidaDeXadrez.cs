@@ -50,6 +50,14 @@ namespace xadrez
             }
         }
 
+        public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
+        {
+            if (!tab.peca(origem).podeMoverPeca(destino))
+            {
+                throw new TabuleiroException("Posição de destino inválida!");
+            }
+        }
+
         private void mudaJogador()
         {
             if (jogadorAtual == Cor.Branca)
