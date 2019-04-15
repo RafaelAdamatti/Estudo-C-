@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using tabuleiro;
 
 namespace xadrez
-{
+{   
     class PartidaDeXadrez
     {
         public Tabuleiro tab { get; private set; }
@@ -79,7 +79,7 @@ namespace xadrez
         }
 
         public void validarPosicaoDeOrigem(Posicao pos)
-        {
+        {   
             if (tab.peca(pos) == null)
             {
                 throw new TabuleiroException ("Não existe peça na posição de origem escolhida!");
@@ -204,7 +204,7 @@ namespace xadrez
                             Peca pecaCapturada = executaMovimento(origem, destino);
                             bool testeXeque = estaEmXeque(cor);
                             desfazMovimento(origem, destino, pecaCapturada);
-                            if (!estaEmXeque(cor))
+                            if (!testeXeque)
                             {
                                 return false;
                             }
