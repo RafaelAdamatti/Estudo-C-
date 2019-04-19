@@ -43,6 +43,11 @@ namespace xadrez_console
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
+                    catch (SystemException e)
+                    {
+                        Console.WriteLine("A posição deve conter uma letra e um número!");
+                        Console.ReadLine();
+                    }
                 }
                 Console.Clear();
                 Tela.imprimirPartida(partida);
