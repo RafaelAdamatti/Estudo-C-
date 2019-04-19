@@ -353,7 +353,7 @@ namespace xadrez
             colocarNovaPeca('e', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('f', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('g', 7, new Peao(tab, Cor.Preta, this));
-            colocarNovaPeca('h', 2, new Peao(tab, Cor.Preta, this));
+            colocarNovaPeca('h', 7, new Peao(tab, Cor.Preta, this));
 
         }
 
