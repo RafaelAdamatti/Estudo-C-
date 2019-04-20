@@ -145,6 +145,21 @@ namespace xadrez
                 promocao = true;
             }
 
+            
+
+            // #jogada especial En Passant
+            if (p is Peao && (destino.linha == origem.linha - 2 || destino.linha == origem.linha + 2))
+            {
+                vulneravelEnPassant = p;
+            }
+            else
+            {
+                vulneravelEnPassant = null;
+            }
+        }
+
+        public void finalizaJogada()
+        {
             if (estaEmXeque(adversaria(jogadorAtual)))
             {
                 xeque = true;
@@ -161,16 +176,6 @@ namespace xadrez
             {
                 turno++;
                 mudaJogador();
-            }
-
-            // #jogada especial En Passant
-            if (p is Peao && (destino.linha == origem.linha - 2 || destino.linha == origem.linha + 2))
-            {
-                vulneravelEnPassant = p;
-            }
-            else
-            {
-                vulneravelEnPassant = null;
             }
         }
 
@@ -247,7 +252,7 @@ namespace xadrez
             return aux;
         }
 
-        public Cor adversaria(Cor cor)
+        private Cor adversaria(Cor cor)
         {
             if (cor == Cor.Branca)
             {

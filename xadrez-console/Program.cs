@@ -41,9 +41,11 @@ namespace xadrez_console
                         if (partida.promocao)
                         {
                             Console.Write("Escolha para qual peça promover: ");
-                            Peca promocao = Tela.lerPecaPromocao(partida.tab, partida.adversaria(partida.jogadorAtual));
+                            Peca promocao = Tela.lerPecaPromocao(partida.tab, partida.jogadorAtual);
                             partida.pecaPromocao(promocao, destino);
                         }
+
+                        partida.finalizaJogada();
                     }
 
                     catch (TabuleiroException e)
