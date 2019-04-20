@@ -29,7 +29,7 @@ namespace xadrez_console
             }
         }
 
-        public static void imprimirPecasCapturadas (PartidaDeXadrez partida)
+        public static void imprimirPecasCapturadas(PartidaDeXadrez partida)
         {
             Console.WriteLine("Peças capturadas: ");
             Console.Write("Brancas: ");
@@ -67,7 +67,7 @@ namespace xadrez_console
             Console.WriteLine("  a b c d e f g h");
         }
 
-        public static void imprimirTabuleiro(Tabuleiro tab, bool [,] posicoesPossiveis)
+        public static void imprimirTabuleiro(Tabuleiro tab, bool[,] posicoesPossiveis)
         {
             ConsoleColor fundoOriginal = Console.BackgroundColor;
             ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
@@ -101,6 +101,32 @@ namespace xadrez_console
             char coluna = s[0];
             int linha = int.Parse(s[1] + "");
             return new PosicaoXadrez(coluna, linha);
+        }
+
+        // #jogada especial promocao
+        public static Peca lerPecaPromocao(Tabuleiro tab, Cor cor)
+        {
+            string promP = Console.ReadLine();
+            if (promP == "dama")
+            {
+                return new Dama(tab, cor);
+            }
+            else if (promP == "bispo")
+            {
+                return new Bispo(tab, cor);
+            }
+            else if (promP == "cavalo")
+            {
+                return new Cavalo(tab, cor);
+            }
+            else if (promP == "torre")
+            {
+                return new Torre(tab, cor);
+            }
+            else
+            {
+                throw new TabuleiroException("Não é uma peça valida!");
+            }
         }
 
         public static void imprimirPeca(Peca peca)

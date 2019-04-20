@@ -36,6 +36,14 @@ namespace xadrez_console
                         partida.validarPosicaoDeDestino(origem, destino);
 
                         partida.realizaJogada(origem, destino);
+                        
+                        // #jogada especial promocao
+                        if (partida.promocao)
+                        {
+                            Console.Write("Escolha para qual peça promover: ");
+                            Peca promocao = Tela.lerPecaPromocao(partida.tab, partida.adversaria(partida.jogadorAtual));
+                            partida.pecaPromocao(promocao, destino);
+                        }
                     }
 
                     catch (TabuleiroException e)
