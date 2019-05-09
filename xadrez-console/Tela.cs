@@ -24,8 +24,16 @@ namespace xadrez_console
             }
             else
             {
-                Console.WriteLine("Xequemate!");
-                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
+                if (partida.afogado)
+                {
+                    Console.WriteLine("Empate!");
+                    Console.WriteLine("Rei Afogado!");
+                }
+                else
+                {
+                    Console.WriteLine("Xequemate!");
+                    Console.WriteLine("Vencedor: " + partida.jogadorAtual);
+                }
             }
         }
 

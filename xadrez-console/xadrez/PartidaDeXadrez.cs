@@ -15,6 +15,7 @@ namespace xadrez
         public bool xeque { get; private set; }
         public Peca vulneravelEnPassant { get; private set; }
         public bool promocao { get; private set; }
+        public bool afogado { get; private set; }
 
         public PartidaDeXadrez()
         {
@@ -168,8 +169,12 @@ namespace xadrez
             {
                 xeque = false;
             }
-            if (testeXequemate(adversaria(jogadorAtual)))
+            if (testeXequemate(adversaria(jogadorAtual)) || testeReiAfogado(adversaria(jogadorAtual)))
             {
+                if (testeReiAfogado(adversaria(jogadorAtual)))
+                {
+                    afogado = true;
+                }
                 terminada = true;
             }
             else
@@ -276,6 +281,37 @@ namespace xadrez
             return null;
         }
 
+        public bool testeReiAfogado(Cor cor)
+        {
+            if (estaEmXeque(cor))
+            {
+                return false;
+            }
+            foreach (Peca x in pecasEmJogo(cor))
+            {
+                bool[,] mat = x.movimentosPossiveis();
+                for (int i = 0; i < tab.linhas; i++)
+                {
+                    for (int j = 0; j < tab.colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = x.posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = executaMovimento(origem, destino);
+                            bool testeXeque = estaEmXeque(cor);
+                            desfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         public bool estaEmXeque(Cor cor)
         {
             Peca R = rei(cor);
@@ -367,7 +403,7 @@ namespace xadrez
             colocarNovaPeca('f', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('g', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('h', 7, new Peao(tab, Cor.Preta, this));
-
+            
         }
 
     }
