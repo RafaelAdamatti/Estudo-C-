@@ -281,12 +281,8 @@ namespace xadrez
             return null;
         }
 
-        public bool testeReiAfogado(Cor cor)
+        public bool existeMovimentosPossiveis(Cor cor)
         {
-            if (estaEmXeque(cor))
-            {
-                return false;
-            }
             foreach (Peca x in pecasEmJogo(cor))
             {
                 bool[,] mat = x.movimentosPossiveis();
@@ -303,13 +299,27 @@ namespace xadrez
                             desfazMovimento(origem, destino, pecaCapturada);
                             if (!testeXeque)
                             {
-                                return false;
+                                return true;
                             }
                         }
                     }
                 }
             }
-            return true;
+            return false;
+        }
+
+        public bool testeReiAfogado(Cor cor)
+        {
+            if (estaEmXeque(cor))
+            {
+                return false;
+            }
+            if (!existeMovimentosPossiveis(cor))
+            {
+                return true;
+            }
+            return false;
+            
         }
 
         public bool estaEmXeque(Cor cor)
@@ -337,29 +347,11 @@ namespace xadrez
             {
                 return false;
             }
-            foreach (Peca x in pecasEmJogo(cor))
+            if (!existeMovimentosPossiveis(cor))
             {
-                bool[,] mat = x.movimentosPossiveis();
-                for (int i = 0; i < tab.linhas; i++)
-                {
-                    for (int j = 0; j < tab.colunas; j++)
-                    {
-                        if (mat[i, j])
-                        {
-                            Posicao origem = x.posicao;
-                            Posicao destino = new Posicao(i, j);
-                            Peca pecaCapturada = executaMovimento(origem, destino);
-                            bool testeXeque = estaEmXeque(cor);
-                            desfazMovimento(origem, destino, pecaCapturada);
-                            if (!testeXeque)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
+                return true;
             }
-            return true;
+            return false;
         }
 
         public void colocarNovaPeca(char coluna, int linha, Peca peca)
@@ -370,7 +362,7 @@ namespace xadrez
 
         private void colocarPecas()
         {
-            colocarNovaPeca('a', 1, new Torre(tab, Cor.Branca));
+            /*colocarNovaPeca('a', 1, new Torre(tab, Cor.Branca));
             colocarNovaPeca('b', 1, new Cavalo(tab, Cor.Branca));
             colocarNovaPeca('c', 1, new Bispo(tab, Cor.Branca));
             colocarNovaPeca('d', 1, new Dama(tab, Cor.Branca));
@@ -403,7 +395,14 @@ namespace xadrez
             colocarNovaPeca('f', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('g', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('h', 7, new Peao(tab, Cor.Preta, this));
-            
+            */
+
+            colocarNovaPeca('e', 1, new Rei(tab, Cor.Branca, this));
+            colocarNovaPeca('e', 6, new Rei(tab, Cor.Preta, this));
+            colocarNovaPeca('h', 1, new Dama(tab, Cor.Branca));
+            colocarNovaPeca('d', 1, new Dama(tab, Cor.Branca));
+            colocarNovaPeca('a', 5, new Dama(tab, Cor.Branca));
+            colocarNovaPeca('h', 7, new Dama(tab, Cor.Branca));
         }
 
     }
