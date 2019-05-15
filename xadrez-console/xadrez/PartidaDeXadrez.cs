@@ -146,7 +146,7 @@ namespace xadrez
                 promocao = true;
             }
 
-            
+
 
             // #jogada especial En Passant
             if (p is Peao && (destino.linha == origem.linha - 2 || destino.linha == origem.linha + 2))
@@ -319,7 +319,7 @@ namespace xadrez
                 return true;
             }
             return false;
-            
+
         }
 
         public bool estaEmXeque(Cor cor)
@@ -362,7 +362,7 @@ namespace xadrez
 
         private void colocarPecas()
         {
-            /*colocarNovaPeca('a', 1, new Torre(tab, Cor.Branca));
+            colocarNovaPeca('a', 1, new Torre(tab, Cor.Branca));
             colocarNovaPeca('b', 1, new Cavalo(tab, Cor.Branca));
             colocarNovaPeca('c', 1, new Bispo(tab, Cor.Branca));
             colocarNovaPeca('d', 1, new Dama(tab, Cor.Branca));
@@ -395,15 +395,7 @@ namespace xadrez
             colocarNovaPeca('f', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('g', 7, new Peao(tab, Cor.Preta, this));
             colocarNovaPeca('h', 7, new Peao(tab, Cor.Preta, this));
-            */
 
-            colocarNovaPeca('e', 1, new Rei(tab, Cor.Branca, this));
-            colocarNovaPeca('e', 6, new Rei(tab, Cor.Preta, this));
-            colocarNovaPeca('h', 1, new Dama(tab, Cor.Branca));
-            colocarNovaPeca('d', 1, new Dama(tab, Cor.Branca));
-            colocarNovaPeca('a', 5, new Dama(tab, Cor.Branca));
-            colocarNovaPeca('h', 7, new Dama(tab, Cor.Branca));
         }
-
     }
 }
